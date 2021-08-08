@@ -1,0 +1,26 @@
+# 액션의 이름
+name: github checkout
+
+on:
+  # 동작할 브랜치와 이벤트
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  # job의 이름
+  build:
+    # 사용하고자 하는 머신. windows, osx, linux 중에서 고를 수 있다.
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # 상속받을 액션. 이 액션은 https://github.com/actions/checkout@v2 에서 호스팅이 된다
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run ls -al
+        run: ls -al
